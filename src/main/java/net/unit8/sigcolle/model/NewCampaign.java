@@ -12,12 +12,12 @@ public class NewCampaign implements Serializable {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-        private String NewCampaignTitle;
+        private String newCampaignTitle;
 
         // Markdown description
-        private String NewCampaignStatement;
+        private String newCampaignStatement;
 
-        private Long NewCampaignGoal;
+        private Long newCampaignGoal;
 
         private Long createUserId;
 
