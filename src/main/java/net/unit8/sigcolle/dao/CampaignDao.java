@@ -15,7 +15,7 @@ import org.seasar.doma.Select;
 @Dao(config = DomaConfig.class)
 public interface CampaignDao {
     @Select(ensureResult = true)
-    UserCampaign selectById(Long campaignId);
+    UserCampaign selectById(Long campaignId); //main\resources\META-INF\net\CampaignDap\selectById.sqlでSQL文定義
 
     @Select
     List<Campaign> selectAll();

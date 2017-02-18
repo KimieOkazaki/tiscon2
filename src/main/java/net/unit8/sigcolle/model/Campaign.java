@@ -13,7 +13,7 @@ import org.seasar.doma.Id;
  */
 @Entity
 @Data
-public class Campaign implements Serializable {
+public class Campaign implements Serializable { //Campaignテーブルが持っている要素を定義
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long campaignId;

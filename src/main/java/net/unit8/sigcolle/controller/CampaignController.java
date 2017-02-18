@@ -31,13 +31,13 @@ public class CampaignController {
 
     private HttpResponse showCampaign(Long campaignId, SignatureForm signature, String message) {
         CampaignDao campaignDao = domaProvider.getDao(CampaignDao.class);
-        UserCampaign campaign = campaignDao.selectById(campaignId);
+        UserCampaign campaign = campaignDao.selectById(campaignId); //campaignDaoクラスのselectByIdメソッドを変数campaignIdで実施し、UserCampaignクラスのcampaignに格納。
 
         SignatureDao signatureDao = domaProvider.getDao(SignatureDao.class);
         int signatureCount = signatureDao.countByCampaignId(campaignId);
 
-        return templateEngine.render("campaign",
-                "campaign", campaign,
+        return templateEngine.render("campaign",    //骨組みとなるHTMLファイルの名前（HTMLファイルの名前と一致させる）テンプレートから見たときのディレクトリ
+                "campaign", campaign,   //"穴埋めの名前",実際の値
                 "signatureCount", signatureCount,
                 "signature", signature,
                 "message", message
@@ -50,6 +50,8 @@ public class CampaignController {
      * @param flash flash scope session
      * @return HttpResponse
      */
+
+    //indexメソッド
     public HttpResponse index(CampaignForm form, Flash flash) {
         if (form.hasErrors()) {
             return builder(HttpResponse.of("Invalid"))
@@ -57,6 +59,7 @@ public class CampaignController {
                     .build();
         }
 
+        //この先の処理はshowCampaignに任せる
         return showCampaign(form.getCampaignIdLong(),
                 new SignatureForm(),
                 (String) some(flash, Flash::getValue).orElse(null));
